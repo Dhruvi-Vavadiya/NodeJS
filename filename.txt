@@ -1,0 +1,12 @@
+hello world !!!!!!!!!!
+1.git init
+2.npm install express
+3.npm install -g nodemode
+4.npm install multer
+5.npm install express-session
+6.npm install cookie-parser 
+7.npm i ejs 
+8.npm i express-validator
+
+
+n.nodemon app

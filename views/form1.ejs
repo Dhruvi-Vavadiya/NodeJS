@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Form Page</h1>
+    <% if(typeof errors !== "undefined"){ %>
+        <ul style="color: red;">
+            <% errors.forEach((err) => { %>
+                <li><%= err.msg %></li>
+            <% }) %>
+        </ul>
+        <% }%>
+     <form action="/form1" method="post">
+        Fname :-<input type="text" name="fname" id="fname" value="<%= formData.fname %>"><br/><br/>
+        Lname :-<input type="text" name="lname" id="lname" value="<%= formData.lname %>"><br/>
+        <input type="submit" value="Submit" id="btnsubmit2" name="submit2">
+    </form>
+</body>
+</html>
