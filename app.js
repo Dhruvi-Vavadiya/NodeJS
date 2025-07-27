@@ -16,7 +16,9 @@ app.set("view engine","ejs")
 
 const product_router = require('./routes/product'); //router middleware
 app.use('/product', product_router);
-
+app.get('/register', (req, res) => {
+  res.render("register",{formData:[]});
+});
 app.get('/form1', (req, res) => {
   res.render("form1",{formData:[]});
 });
@@ -34,8 +36,24 @@ app.post('/form1',
     }
   res.send(req.body.fname + " " + req.body.lname);
 });
-// app.get('/register', (req, res) => {
-// });
+
+app.get('/inq', (req, res) => {
+  res.render("inq",{formData:[]});
+});
+//check funaction is doing sanitazation and validation
+app.post('/inq',
+ [ check("fname").trim().escape().notEmpty().withMessage("Enter inq first name"),
+  check("lname").trim().escape().notEmpty().withMessage("Enter inq last name")]
+  , (req, res) => {
+    const errs = validationResult(req);
+    console.log(errs);
+    if(!errs.isEmpty()){
+      // return res.render("form1",{FormData:req.body,errors:errs.array()});
+      return res.status(422).json({errors:errs.array()});
+      console.log("error in validation");
+    }
+  res.send(req.body.fname + " " + req.body.lname);
+});
 
 //data ejs EJS = (SSR)Server Side Rendering
 //CJS =call API use AJAX,javascript is (CSR)Client Side Rending
